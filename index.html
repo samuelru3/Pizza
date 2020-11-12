@@ -15,21 +15,21 @@
 
 
         .größe {
-            background-color: rgb(76, 182, 85);
+            background-color: rgb(150, 97, 18);
             padding: 14px;
 
         }
 
         body {
             text-align: center;
-
-            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(212, 188, 188);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-weight: bold;
         }
 
         .zutaten {
             display: block;
-            background-color: rgb(76, 182, 85);
+            background-color: rgb(150, 97, 18);
             margin-top: 30px;
             text-align: left;
             padding: 14px;
@@ -41,10 +41,12 @@
 
         .ausgabe {
             margin-top: 30px;
+            padding-bottom: 15px;
+            background-color: rgb(150, 97, 18);
         }
 
         .container {
-            background-color: green;
+            background-color: rgba(134, 80, 29, 0.74);
         }
 
         .kleinerContainer {
@@ -58,9 +60,9 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="pizza-app">
         <div class="kleinerContainer">
-            <h1>Pizza</h1>
+            <h1 style="padding: 15px; font-size: 350%;">Pizza</h1>
 
             <div class="größe">
                 <h3>Größe:</h3>
@@ -88,7 +90,7 @@
             <div class="zutaten">
                 <h3>Zutaten:</h3>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <input v-bind="kaese" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
                         Käse </label>
                 </div>
@@ -115,17 +117,33 @@
 
             </div>
             <div class="berechnen">
-                <button class="btn btn-primary btn-block" type="submit">Preis berechen</button>
+                <button class="btn btn-primary btn-block" @click="berechnen">Preis berechen</button>
             </div>
 
             <div class="ausgabe">
                 <p>
-                    Die Pizza Kostet:
+                    Die Pizza Kostet: 10€
                 </p>
             </div>
         </div>
     </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const PizzaApp = {
+            data() {
+                return {
+                    kaese: true
+                }
+            },
+            methods: {
+                berechnen() {
+                    console.log('Berechnen');
+                }
+            }
+        };
+        Vue.createApp(PizzaApp).mount('#pizza-app');
 
+    </script>
 </body>
 
 </html>
