@@ -22,10 +22,10 @@
 
         body {
             text-align: center;
-            background-color: rgb(212, 188, 188);
+
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-weight: bold;
-            background-color: rgba(134, 80, 29, 0.74);
+            background-color: #86501DBD;
         }
 
         .zutaten {
@@ -74,7 +74,7 @@
                     <label class="form-check-label" for="exampleRadios2">
                         Medium
                     </label>
-                    <input class="form-check-input" type="radio" @click="groß" name="exampleRadios" id="exampleRadios3"
+                    <input class="form-check-input" type="radio" @click="gros" name="exampleRadios" id="exampleRadios3"
                         value="option3">
                     <label class="form-check-label" for="exampleRadios3">
                         Large
@@ -85,28 +85,32 @@
             <div class="zutaten">
                 <h3 style="text-align: center;">Zutaten:</h3>
                 <div class="form-check">
-                    <input v-bind="kaese" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Käse </label>
+                    <input v-model="kase" @click="kasee" class="form-check-input" type="checkbox" value="" id="Käse">
+                    <label class="form-check-label" for="Käse">
+                        extra Käse </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
+                    <input v-model="schinken" @click="schinkenn" class="form-check-input" type="checkbox" value=""
+                        id="Schinken">
+                    <label class="form-check-label" for="Schinken">
                         Schinken </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                    <label class="form-check-label" for="defaultCheck3">
+                    <input v-model="zwiebeln" @click="zwiebelnn" class="form-check-input" type="checkbox" value=""
+                        id="Zwiebeln">
+                    <label class="form-check-label" for="Zwiebeln">
                         Zwiebeln </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-                    <label class="form-check-label" for="defaultCheck4">
+                    <input v-model="oliven" @click="olivenn" class="form-check-input" type="checkbox" value=""
+                        id="Oliven">
+                    <label class="form-check-label" for="Oliven">
                         Oliven </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
-                    <label class="form-check-label" for="defaultCheck5">
+                    <input v-model="ananas" @click="ananass" class="form-check-input" type="checkbox" value=""
+                        id="Ananas">
+                    <label class="form-check-label" for="Ananas">
                         Ananas </label>
                 </div>
 
@@ -123,21 +127,72 @@
         </div>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
+
+
     <script>
+        // const cb = document.getElementById('Käse');
+        // const cb = document.getElementById('Schinken');
+        // const cb = document.getElementById('Zwiebeln');
+        // const cb = document.getElementById('Käse');
+        // const cb = document.getElementById('Käse');
         var grundpreis = 6.99;
+        var kasepreis = 0;
+        var schinkenpreis = 0;
+        var zwiebelnpreis = 0;
+        var olivenpreis = 0;
+        var ananaspreis = 0;
         const PizzaApp = {
             data() {
                 return {
-                    kaese: true,
-                    ausgabe: '12,00'
+                    kase: false,
+                    schinken: false,
+                    zwiebeln: false,
+                    oliven: false,
+                    ananas: false,
+                    ausgabe: 6.99
                 }
             },
             methods: {
+                kasee() {
+                    if (this.kase == false) {
+                        kasepreis = 0.5;
+                    } else {
+                        kasepreis = 0;
+                    }
+                },
+                schinkenn() {
+                    if (this.schinken == false) {
+                        schinkenpreis = 0.5;
+                    } else {
+                        schinkenpreis = 0;
+                    }
+                },
+                zwiebelnn() {
+                    if (this.zwiebeln == false) {
+                        zwiebelnpreis = 0.5;
+                    } else {
+                        zwiebelnpreis = 0;
+                    }
+                },
+                olivenn() {
+                    if (this.oliven == false) {
+                        olivenpreis = 0.5;
+                    } else {
+                        olivenpreis = 0;
+                    }
+                },
+                ananass() {
+                    if (this.ananas == false) {
+                        ananaspreis = 0.5;
+                    } else {
+                        ananaspreis = 0;
+                    }
+                },
                 klein() { grundpreis = 6.99 },
                 mittel() { grundpreis = 8.99 },
-                groß() { grundpreis = 9.99 },
+                gros() { grundpreis = 9.99 },
                 berechnen() {
-                    this.ausgabe = grundpreis;
+                    this.ausgabe = grundpreis + kasepreis + schinkenpreis + zwiebelnpreis + olivenpreis + ananaspreis;
                 }
             }
         };
