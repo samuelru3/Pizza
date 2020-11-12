@@ -25,6 +25,7 @@
             background-color: rgb(212, 188, 188);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-weight: bold;
+            background-color: rgba(134, 80, 29, 0.74);
         }
 
         .zutaten {
@@ -45,10 +46,6 @@
             background-color: rgb(150, 97, 18);
         }
 
-        .container {
-            background-color: rgba(134, 80, 29, 0.74);
-        }
-
         .kleinerContainer {
             margin-left: 7%;
             margin-right: 7%;
@@ -67,17 +64,17 @@
             <div class="größe">
                 <h3>Größe:</h3>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                    <input class="form-check-input" type="radio" @click="klein" name="exampleRadios" id="exampleRadios1"
                         value="option1" checked>
                     <label class="form-check-label" for="exampleRadios1">
                         Small
                     </label>
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                        value="option2">
+                    <input class="form-check-input" type="radio" @click="mittel" name="exampleRadios"
+                        id="exampleRadios2" value="option2">
                     <label class="form-check-label" for="exampleRadios2">
                         Medium
                     </label>
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
+                    <input class="form-check-input" type="radio" @click="groß" name="exampleRadios" id="exampleRadios3"
                         value="option3">
                     <label class="form-check-label" for="exampleRadios3">
                         Large
@@ -86,7 +83,7 @@
             </div>
 
             <div class="zutaten">
-                <h3>Zutaten:</h3>
+                <h3 style="text-align: center;">Zutaten:</h3>
                 <div class="form-check">
                     <input v-bind="kaese" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
@@ -127,6 +124,7 @@
     </div>
     <script src="https://unpkg.com/vue@next"></script>
     <script>
+        var grundpreis = 6.99;
         const PizzaApp = {
             data() {
                 return {
@@ -135,9 +133,11 @@
                 }
             },
             methods: {
+                klein() { grundpreis = 6.99 },
+                mittel() { grundpreis = 8.99 },
+                groß() { grundpreis = 9.99 },
                 berechnen() {
-                    console.log('Berechnen');
-                    this.ausgabe = '9,99'
+                    this.ausgabe = grundpreis;
                 }
             }
         };
