@@ -17,6 +17,8 @@
         .größe {
             background-color: rgb(150, 97, 18);
             padding: 14px;
+            border-radius: 19px 19px 19px 19px;
+
 
         }
 
@@ -34,6 +36,7 @@
             margin-top: 30px;
             text-align: left;
             padding: 14px;
+            border-radius: 19px 19px 19px 19px;
         }
 
         .berechnen {
@@ -44,6 +47,8 @@
             margin-top: 30px;
             padding-bottom: 15px;
             background-color: rgb(150, 97, 18);
+            border-radius: 19px 19px 19px 19px;
+
         }
 
         .kleinerContainer {
@@ -113,9 +118,19 @@
                     <label class="form-check-label" for="Ananas">
                         Ananas </label>
                 </div>
-
             </div>
 
+            <!-- <label for="anzahl" style="padding: 10px;">Anzahl: </label>
+            <select id="anzahl" name="anzahl" class="btn btn-secondary dropdown-toggle">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select> -->
+
+            <div id="eingabe">
+                <input type="number" name="anzahl" id="anzahl" placeholder="Anzahl der Pizzen">
+            </div>
 
             <div class="ausgabe">
                 <p id="preisausgabe">
@@ -139,9 +154,16 @@
         var zwiebelnpreis = 0;
         var olivenpreis = 0;
         var ananaspreis = 0;
+        var anzahlPizzen = 1;
+        var anzahl = document.getElementById("anzahl").value;
+        if (anzahl > 0) {
+            anzahlPizzen = anzahl;
+        }
+        berechnen();
         function berechnen() {
 
-            this.ausgabe = grundpreis + kasepreis + schinkenpreis + zwiebelnpreis + olivenpreis + ananaspreis;
+            this.ausgabe = (grundpreis + kasepreis + schinkenpreis + zwiebelnpreis
+                + olivenpreis + ananaspreis) * anzahlPizzen;
             console.log(ausgabe);
             document.getElementById("preisausgabe").innerHTML = "Die Pizza Kostet: " + ausgabe;
         }
