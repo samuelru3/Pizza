@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="pizza-app" class="container bg-success p-2">
+        <h1 class="bg-light rounded m-2 p-2">Pizza</h1>
+        <div class="form-group bg-light rounded m-2 p-2">
+            <h2>Größe der Pizza</h2>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="radioSize" id="radioSizeSmall" v-model="size"
+                    value="small">
+                <label class="form-check-label" for="radioSizeSmall">Small</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="radioSize" id="radioSizeMedium" v-model="size"
+                    value="medium">
+                <label class="form-check-label" for="radioSizeMedium">Medium</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="radioSize" id="radioSizeLarge" v-model="size"
+                    value="large">
+                <label class="form-check-label" for="radioSizeLarge">Large</label>
+            </div>
+        </div>
+
+        <div class="form-group bg-light rounded m-2 p-2">
+            <h2>Zutaten</h2>
+            <div class="form-check">
+                <input v-model="kaese" class="form-check-input" type="checkbox" id="checkKaese">
+                <label class="form-check-label" for="checkKaese">
+                    Käse
+                </label>
+            </div>
+            <div class="form-check">
+                <input v-model="schinken" class="form-check-input" type="checkbox" id="checkSchinken">
+                <label class="form-check-label" for="checkSchinken">
+                    Schinken
+                </label>
+            </div>
+            <div class="form-check">
+                <input v-model="zwiebeln" class="form-check-input" type="checkbox" id="checkZwiebeln">
+                <label class="form-check-label" for="checkZwiebeln">
+                    Zwiebeln
+                </label>
+            </div>
+            <div class="form-check">
+                <input v-model="oliven" class="form-check-input" type="checkbox" id="checkOliven">
+                <label class="form-check-label" for="checkOliven">
+                    Oliven
+                </label>
+            </div>
+            <div class="form-check">
+                <input v-model="ananas" class="form-check-input" type="checkbox" id="checkAnanas">
+                <label class="form-check-label" for="checkAnanas">
+                    Ananas
+                </label>
+            </div>
+        </div>
+
+        <!-- 
+        <div class="m-2">
+            <button class="btn btn-block btn-primary" @click="berechnen">Preis berechnen</button>
+        </div>
+        -->
+
+        <p class="alert alert-warning m-2 text-center ">Die Pizza kostet {{ gesamtPreis }} €.</p>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const PizzaApp = {
+            data() {
+                return {
+                    size: 'medium',
+                    kaese: true,
+                    schinken: false,
+                    zwiebeln: false,
+                    oliven: true,
+                    ananas: false,
+                    ausgabe: '12,34'
+                }
+            },
+            computed: {
+                gesamtPreis() {
+                    let preisInCent = 0;
+                    switch (this.size) {
+                        case 'small':
+                            preisInCent = 795;
+                            break;
+                        case 'medium':
+                            preisInCent = 995;
+                            break;
+                        case 'large':
+                            preisInCent = 1195;
+                            break;
+                    }
+
+                    if (this.kaese) {
+                        preisInCent += 50;
+                    }
+                    if (this.schinken) {
+                        preisInCent += 10;
+                    }
+                    if (this.zwiebeln) {
+                        preisInCent += 120;
+                    }
+                    if (this.oliven) {
+                        preisInCent += 110;
+                    }
+                    if (this.ananas) {
+                        preisInCent += 80;
+                    }
+
+                    const preisInEuro = preisInCent / 100;
+                    const preisString = preisInEuro.toLocaleString('de', { minimumFractionDigits: 2 });
+                    return preisString;
+                }
+            },
+            methods: {
+                berechnen() {
+
+                }
+            }
+        };
+        Vue.createApp(PizzaApp).mount('#pizza-app');
+    </script>
+</body>
+
+</html>

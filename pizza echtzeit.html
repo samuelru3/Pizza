@@ -84,6 +84,11 @@
                     <label class="form-check-label" for="exampleRadios3">
                         Large
                     </label>
+                    <input class="form-check-input" type="radio" @click="party" name="exampleRadios" id="exampleRadios4"
+                        value="option4">
+                    <label class="form-check-label" for="exampleRadios4">
+                        Party
+                    </label>
                 </div>
             </div>
 
@@ -118,19 +123,26 @@
                     <label class="form-check-label" for="Ananas">
                         Ananas (0,80€)</label>
                 </div>
+                <div class="form-check">
+                    <input v-model="mozarella" @click="mozarellaa" class="form-check-input" type="checkbox" value=""
+                        id="mozarella">
+                    <label class="form-check-label" for="mozarella">
+                        Mozarella (0,60€)</label>
+                </div>
             </div>
 
-            <!-- <label for="anzahl" style="padding: 10px;">Anzahl: </label>
+            <label for="anzahl" style="padding: 10px;">Anzahl: </label>
             <select id="anzahl" name="anzahl" class="btn btn-secondary dropdown-toggle">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-            </select> -->
-
+            </select>
+            <!-- 
             <div id="eingabe">
                 <input type="number" name="anzahl" id="anzahl" placeholder="Anzahl der Pizzen">
-            </div>
+
+            </div> -->
 
             <div class="ausgabe">
                 <p id="preisausgabe">
@@ -143,18 +155,14 @@
 
 
     <script>
-        // const cb = document.getElementById('Käse');
-        // const cb = document.getElementById('Schinken');
-        // const cb = document.getElementById('Zwiebeln');
-        // const cb = document.getElementById('Käse');
-        // const cb = document.getElementById('Käse');
         var grundpreis = 795;
         var kasepreis = 0;
         var schinkenpreis = 0;
         var zwiebelnpreis = 0;
         var olivenpreis = 0;
         var ananaspreis = 0;
-        var anzahlPizzen = 1;
+        var mozarellapreis = 0
+        // var anzahlPizzen = 1;
         var anzahl = document.getElementById("anzahl").value;
         console.log(anzahl);
         if (anzahl > 0) {
@@ -164,11 +172,12 @@
         function berechnen() {
 
             this.ausgabe = (grundpreis + kasepreis + schinkenpreis + zwiebelnpreis
-                + olivenpreis + ananaspreis) * anzahlPizzen;
+                + olivenpreis + ananaspreis + mozarellapreis);
             this.ausgabe = ausgabe / 100;
             this.ausgabe = ausgabe * anzahlPizzen;
+            const preisString = ausgabe.toLocaleString('de', { minimumFractionDigits: 2 });
             console.log(ausgabe);
-            document.getElementById("preisausgabe").innerHTML = "Die Pizza Kostet: " + ausgabe;
+            document.getElementById("preisausgabe").innerHTML = "Die Pizza Kostet: " + preisString + "€";
         }
         const PizzaApp = {
 
@@ -179,6 +188,7 @@
                     zwiebeln: false,
                     oliven: false,
                     ananas: false,
+                    mozarella: false,
                     ausgabe: 699
                 }
             },
@@ -228,9 +238,19 @@
                         berechnen();
                     }
                 },
+                mozarellaa() {
+                    if (this.mozarella == false) {
+                        mozarellapreis = 60;
+                        berechnen();
+                    } else {
+                        mozarellapreis = 0;
+                        berechnen();
+                    }
+                },
                 klein() { grundpreis = 795; berechnen(); },
                 mittel() { grundpreis = 995; berechnen(); },
                 gros() { grundpreis = 1195; berechnen(); },
+                party() { grundpreis = 1995; berechnen(); },
 
 
             }
