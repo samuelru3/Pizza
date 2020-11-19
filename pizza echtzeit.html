@@ -92,31 +92,31 @@
                 <div class="form-check">
                     <input v-model="kase" @click="kasee" class="form-check-input" type="checkbox" value="" id="Käse">
                     <label class="form-check-label" for="Käse">
-                        extra Käse </label>
+                        extra Käse (0,50€) </label>
                 </div>
                 <div class="form-check">
                     <input v-model="schinken" @click="schinkenn" class="form-check-input" type="checkbox" value=""
                         id="Schinken">
                     <label class="form-check-label" for="Schinken">
-                        Schinken </label>
+                        Schinken (1,10€)</label>
                 </div>
                 <div class="form-check">
                     <input v-model="zwiebeln" @click="zwiebelnn" class="form-check-input" type="checkbox" value=""
                         id="Zwiebeln">
                     <label class="form-check-label" for="Zwiebeln">
-                        Zwiebeln </label>
+                        Zwiebeln (1,20€)</label>
                 </div>
                 <div class="form-check">
                     <input v-model="oliven" @click="olivenn" class="form-check-input" type="checkbox" value=""
                         id="Oliven">
                     <label class="form-check-label" for="Oliven">
-                        Oliven </label>
+                        Oliven (1,10€) </label>
                 </div>
                 <div class="form-check">
                     <input v-model="ananas" @click="ananass" class="form-check-input" type="checkbox" value=""
                         id="Ananas">
                     <label class="form-check-label" for="Ananas">
-                        Ananas </label>
+                        Ananas (0,80€)</label>
                 </div>
             </div>
 
@@ -148,7 +148,7 @@
         // const cb = document.getElementById('Zwiebeln');
         // const cb = document.getElementById('Käse');
         // const cb = document.getElementById('Käse');
-        var grundpreis = 6.99;
+        var grundpreis = 795;
         var kasepreis = 0;
         var schinkenpreis = 0;
         var zwiebelnpreis = 0;
@@ -156,6 +156,7 @@
         var ananaspreis = 0;
         var anzahlPizzen = 1;
         var anzahl = document.getElementById("anzahl").value;
+        console.log(anzahl);
         if (anzahl > 0) {
             anzahlPizzen = anzahl;
         }
@@ -164,6 +165,8 @@
 
             this.ausgabe = (grundpreis + kasepreis + schinkenpreis + zwiebelnpreis
                 + olivenpreis + ananaspreis) * anzahlPizzen;
+            this.ausgabe = ausgabe / 100;
+            this.ausgabe = ausgabe * anzahlPizzen;
             console.log(ausgabe);
             document.getElementById("preisausgabe").innerHTML = "Die Pizza Kostet: " + ausgabe;
         }
@@ -176,13 +179,13 @@
                     zwiebeln: false,
                     oliven: false,
                     ananas: false,
-                    ausgabe: 6.99
+                    ausgabe: 699
                 }
             },
             methods: {
                 kasee() {
                     if (this.kase == false) {
-                        kasepreis = 0.5;
+                        kasepreis = 50;
                         berechnen();
                     } else {
                         kasepreis = 0;
@@ -191,7 +194,7 @@
                 },
                 schinkenn() {
                     if (this.schinken == false) {
-                        schinkenpreis = 0.5;
+                        schinkenpreis = 110;
                         berechnen();
                     } else {
                         schinkenpreis = 0;
@@ -200,7 +203,7 @@
                 },
                 zwiebelnn() {
                     if (this.zwiebeln == false) {
-                        zwiebelnpreis = 0.5;
+                        zwiebelnpreis = 120;
                         berechnen();
                     } else {
                         zwiebelnpreis = 0;
@@ -209,7 +212,7 @@
                 },
                 olivenn() {
                     if (this.oliven == false) {
-                        olivenpreis = 0.5;
+                        olivenpreis = 110;
                         berechnen();
                     } else {
                         olivenpreis = 0;
@@ -218,16 +221,16 @@
                 },
                 ananass() {
                     if (this.ananas == false) {
-                        ananaspreis = 0.5;
+                        ananaspreis = 80;
                         berechnen();
                     } else {
                         ananaspreis = 0;
                         berechnen();
                     }
                 },
-                klein() { grundpreis = 6.99; berechnen(); },
-                mittel() { grundpreis = 8.99; berechnen(); },
-                gros() { grundpreis = 9.99; berechnen(); },
+                klein() { grundpreis = 795; berechnen(); },
+                mittel() { grundpreis = 995; berechnen(); },
+                gros() { grundpreis = 1195; berechnen(); },
 
 
             }
