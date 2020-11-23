@@ -45,10 +45,11 @@
 
         .ausgabe {
             margin-top: 30px;
-            padding-bottom: 15px;
+            padding: 20px;
+            padding-bottom: 17px;
             background-color: rgb(150, 97, 18);
             border-radius: 19px 19px 19px 19px;
-
+            margin-bottom: 20px;
         }
 
         .kleinerContainer {
@@ -57,6 +58,10 @@
             padding: 18px;
             /* background-color: rgb(4, 77, 4); */
             padding: 0%;
+        }
+
+        .zahlen {
+            padding: 15px;
         }
     </style>
 </head>
@@ -138,11 +143,6 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
             </select>
-            <!-- 
-            <div id="eingabe">
-                <input type="number" name="anzahl" id="anzahl" placeholder="Anzahl der Pizzen">
-
-            </div> -->
 
             <div class="ausgabe">
                 <p id="preisausgabe">
@@ -152,8 +152,10 @@
         </div>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
-
-
+    <!-- <a id="zahlen" href="https://paypal.me/samuelscom?locale.x=de_DE" class="btn btn-primary btn-lg active"
+        role="button" aria-pressed="true">Zahlen und Bestellen!</a> -->
+    <a id="zahlen" href="https://py.pl/6WtdYFUIkSK" class="btn btn-primary btn-lg active" role="button"
+        aria-pressed="true">Zahlen und Bestellen!</a>
     <script>
         var grundpreis = 795;
         var kasepreis = 0;
@@ -191,6 +193,9 @@
                     mozarella: false,
                     ausgabe: 699
                 }
+            },
+            computet: {
+
             },
             methods: {
                 kasee() {
