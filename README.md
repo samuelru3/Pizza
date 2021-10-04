@@ -1,2 +1,3 @@
-# Pizza
-Website zum bestellen einer Pizza
+# Pizza-Bestellwebsite
+
+HTML/CSS/JavaScript Projekt bei dem eine Website Realisiert wurde mit welcher simuliert Pizzen in verschiedenen Größen (und Preisen) und Beliebigen Zutaten bestellt werden können.
